@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Ships - Selector</title>
+<style>
+  body {
+    margin: 0;
+    background: radial-gradient(circle at center, #001f3f 0%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+  .shapes {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .shape {
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(0, 51, 102, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 150px;
+  }
+  .shape svg {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 0 10px currentColor);
+    transition: transform 0.3s ease;
+  }
+  .shape:hover svg {
+    transform: scale(1.1);
+  }
+  .shape span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  #interceptor { color: #00ffff; }
+  #cruiser { color: #ff00ff; }
+  #speeder { color: #ffaa00; }
+  
+  #interceptor:hover { border-color: #00ffff; box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4); background: rgba(0, 51, 102, 0.8); }
+  #cruiser:hover { border-color: #ff00ff; box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4); background: rgba(51, 0, 51, 0.8); }
+  #speeder:hover { border-color: #ffaa00; box-shadow: 0 10px 25px rgba(255, 170, 0, 0.4); background: rgba(51, 25, 0, 0.8); }
+</style>
+</head>
+<body>
+
+<h2>SELECCIONA TU NAVE</h2>
+<div class="shapes">
+  <div class="shape" id="interceptor" data-shape="interceptor">
+    <svg viewBox="0 0 100 100">
+      <path d="M50 10 L90 90 L50 70 L10 90 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <path d="M50 30 L70 80 L50 65 L30 80 Z" fill="currentColor" opacity="0.5" />
+    </svg>
+    <span>Interceptor</span>
+  </div>
+  <div class="shape" id="cruiser" data-shape="cruiser">
+    <svg viewBox="0 0 100 100">
+      <path d="M50 20 L85 60 L85 85 L50 75 L15 85 L15 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <rect x="40" y="40" width="20" height="30" fill="currentColor" opacity="0.5" />
+    </svg>
+    <span>Crucero</span>
+  </div>
+  <div class="shape" id="speeder" data-shape="speeder">
+    <svg viewBox="0 0 100 100">
+      <path d="M50 10 L65 40 L80 90 L50 80 L20 90 L35 40 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <circle cx="50" cy="60" r="10" fill="currentColor" opacity="0.5" />
+    </svg>
+    <span>Speeder</span>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.shape').forEach(el => {
+  el.onclick = () => {
+    localStorage.setItem('selShape', el.dataset.shape);
+    location.href = 'juego.html';
+  };
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+1. Enemigos con Disparo a Distancia (Toques de Bullet Hell)
+Agregar una nave francotiradora (ej. color morado o amarillo) que se mantenga a cierta distancia y dispare proyectiles. Esto obliga al jugador a esquivar activamente los lásers enemigos, no solo a huir.
+
+2. Habilidad de "Dash" (Evasión)
+Al presionar la tecla ESPACIO la nave hace un impulso rápido (Dash) hacia la dirección de movimiento, dejando una estela visual. Tendría un tiempo de recarga (cooldown). Vital para escapar de acorralamientos o esquivar proyectiles rápidos.
+
+3. Jefes o Mini-jefes Modulares
+Aparición de naves gigantes (ej. cada 2 minutos) que también sean modulares. Para destruirlas, el jugador tendría que destruir primero sus cañones o escudos laterales antes de poder hacerle daño a su núcleo.
+
+4. Mejora del "Game Feel" (Jugo visual)
+- Screen Shake (Temblor de pantalla): Hacer que la cámara tiemble ligeramente al disparar misiles de área, recibir daño o destruir a un enemigo grande. Da más peso a la acción.
+- Números de Daño Flotantes: Al golpear a los enemigos, que salten números de daño (ej. "-10") al estilo RPG.
+- Drops Físicos (Chatarra/Gemas): En lugar de sumar monedas automáticamente, que los enemigos suelten items en el mapa que se deban recoger. Añadir una mejora de "Imán" a la tienda para atraerlos. Esto hace el Modo Torreta más arriesgado.
+
+5. Tipos de Armas
+En lugar de solo aumentar la cadencia, las mejoras de arma podrían cambiar el tipo de disparo. Por ejemplo, nivel 3: disparo doble (dos láseres paralelos), nivel 5: disparo en ráfaga o disparo triple (disperso).
