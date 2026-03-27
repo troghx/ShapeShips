@@ -4,94 +4,208 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neon Ships - Selector</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --panel-bg: rgba(0, 18, 38, 0.58);
+    --panel-border: rgba(255, 255, 255, 0.18);
+  }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: radial-gradient(circle at center, #001f3f 0%, #000000 100%);
+    background:
+      radial-gradient(circle at center, rgba(0, 90, 180, 0.22) 0%, transparent 45%),
+      radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 38%),
+      radial-gradient(circle at center, #001f3f 0%, #000000 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding: 28px 18px;
     color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Press Start 2P', cursive;
   }
   h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    margin: 0 0 1.2rem;
+    text-align: center;
     text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+  .subtitle {
+    max-width: 920px;
+    margin: 0 0 2rem;
+    font-size: 0.62rem;
+    line-height: 1.9;
+    text-align: center;
+    color: #9cc7e7;
   }
   .shapes {
     display: flex;
-    gap: 30px;
+    gap: 26px;
     flex-wrap: wrap;
     justify-content: center;
+    width: min(1120px, 100%);
   }
   .shape {
     cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 20px;
-    background: rgba(0, 51, 102, 0.3);
-    transition: all 0.3s ease;
+    border: 2px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 22px 18px 18px;
+    background: var(--panel-bg);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    width: 150px;
+    gap: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    width: min(100%, 300px);
+    backdrop-filter: blur(6px);
+  }
+  .shape:hover {
+    transform: translateY(-6px);
   }
   .shape svg {
-    width: 100px;
-    height: 100px;
+    width: 108px;
+    height: 108px;
+    align-self: center;
     filter: drop-shadow(0 0 10px currentColor);
     transition: transform 0.3s ease;
   }
   .shape:hover svg {
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
-  .shape span {
-    font-size: 1.2rem;
-    font-weight: bold;
+  .shape h3 {
+    margin: 0;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-  
+  .role {
+    font-size: 0.5rem;
+    color: #d9e8f4;
+    opacity: 0.9;
+    line-height: 1.8;
+  }
+  .desc {
+    min-height: 64px;
+    font-size: 0.5rem;
+    line-height: 1.8;
+    color: #9cc7e7;
+  }
+  .stats {
+    display: grid;
+    gap: 8px;
+  }
+  .stat {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.45rem;
+    color: #d7e7f5;
+  }
+  .bar {
+    height: 8px;
+    border: 1px solid currentColor;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .bar span {
+    display: block;
+    height: 100%;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+  }
+  .perk {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    padding-top: 12px;
+    font-size: 0.46rem;
+    line-height: 1.9;
+    color: #ffffff;
+  }
+  .hint {
+    margin-top: 1.7rem;
+    font-size: 0.48rem;
+    text-align: center;
+    line-height: 1.8;
+    color: #7aa8c7;
+  }
   #interceptor { color: #00ffff; }
   #cruiser { color: #ff00ff; }
   #speeder { color: #ffaa00; }
-  
-  #interceptor:hover { border-color: #00ffff; box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4); background: rgba(0, 51, 102, 0.8); }
-  #cruiser:hover { border-color: #ff00ff; box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4); background: rgba(51, 0, 51, 0.8); }
-  #speeder:hover { border-color: #ffaa00; box-shadow: 0 10px 25px rgba(255, 170, 0, 0.4); background: rgba(51, 25, 0, 0.8); }
+  #interceptor:hover { border-color: #00ffff; box-shadow: 0 10px 25px rgba(0, 255, 255, 0.35); background: rgba(0, 51, 102, 0.78); }
+  #cruiser:hover { border-color: #ff00ff; box-shadow: 0 10px 25px rgba(255, 0, 255, 0.35); background: rgba(51, 0, 51, 0.78); }
+  #speeder:hover { border-color: #ffaa00; box-shadow: 0 10px 25px rgba(255, 170, 0, 0.35); background: rgba(51, 25, 0, 0.78); }
+  @media (max-width: 760px) {
+    .shape {
+      width: min(100%, 360px);
+    }
+  }
 </style>
 </head>
 <body>
 
 <h2>SELECCIONA TU NAVE</h2>
+<p class="subtitle">MISMO UNIVERSO NEON. MISIONES DISTINTAS. CADA CHASIS TRAE OTRA LECTURA DE COMBATE, OTRA SILUETA Y OTRO BALANCE DE ARMADURA, PROPULSION Y POTENCIA DE FUEGO.</p>
+
 <div class="shapes">
   <div class="shape" id="interceptor" data-shape="interceptor">
     <svg viewBox="0 0 100 100">
-      <path d="M50 10 L90 90 L50 70 L10 90 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
-      <path d="M50 30 L70 80 L50 65 L30 80 Z" fill="currentColor" opacity="0.5" />
+      <path d="M50 8 L82 38 L64 44 L88 92 L50 70 L12 92 L36 44 L18 38 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <path d="M50 24 L62 52 L50 64 L38 52 Z" fill="currentColor" opacity="0.5" />
+      <path d="M31 56 L44 66" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+      <path d="M69 56 L56 66" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
     </svg>
-    <span>Interceptor</span>
+    <h3>Interceptor</h3>
+    <div class="role">ROL: CAZADOR NEON</div>
+    <div class="desc">ACELERACION ALTA, DASH CORTO Y RECARGA RAPIDA. HECHO PARA FLANQUEAR, ESQUIVAR Y REMATAR.</div>
+    <div class="stats">
+      <div class="stat"><span>ARMOR</span><div class="bar"><span style="width: 42%"></span></div></div>
+      <div class="stat"><span>SPEED</span><div class="bar"><span style="width: 92%"></span></div></div>
+      <div class="stat"><span>FIRE</span><div class="bar"><span style="width: 68%"></span></div></div>
+    </div>
+    <div class="perk">BONO: RECUPERA DASH ANTES Y PIERDE MENOS VELOCIDAD AL GIRAR.</div>
   </div>
+
   <div class="shape" id="cruiser" data-shape="cruiser">
     <svg viewBox="0 0 100 100">
-      <path d="M50 20 L85 60 L85 85 L50 75 L15 85 L15 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
-      <rect x="40" y="40" width="20" height="30" fill="currentColor" opacity="0.5" />
+      <path d="M50 14 L78 30 L88 60 L74 88 L50 80 L26 88 L12 60 L22 30 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <rect x="38" y="34" width="24" height="28" fill="currentColor" opacity="0.42" />
+      <path d="M24 62 L76 62" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+      <path d="M35 22 L35 34 M65 22 L65 34" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
     </svg>
-    <span>Crucero</span>
+    <h3>Crucero</h3>
+    <div class="role">ROL: BASTION PESADO</div>
+    <div class="desc">MAS CASCO, MAS PLACAS Y MAS CONTROL DE FRENTE. GANA POR RESISTENCIA Y PRESION CONSTANTE.</div>
+    <div class="stats">
+      <div class="stat"><span>ARMOR</span><div class="bar"><span style="width: 95%"></span></div></div>
+      <div class="stat"><span>SPEED</span><div class="bar"><span style="width: 46%"></span></div></div>
+      <div class="stat"><span>FIRE</span><div class="bar"><span style="width: 84%"></span></div></div>
+    </div>
+    <div class="perk">BONO: EL FRENTE SOPORTA MAS IMPACTO Y EL ESCUDO RECARGA ANTES.</div>
   </div>
+
   <div class="shape" id="speeder" data-shape="speeder">
     <svg viewBox="0 0 100 100">
-      <path d="M50 10 L65 40 L80 90 L50 80 L20 90 L35 40 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
-      <circle cx="50" cy="60" r="10" fill="currentColor" opacity="0.5" />
+      <path d="M50 10 L64 24 L78 56 L66 90 L50 76 L34 90 L22 56 L36 24 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+      <circle cx="50" cy="48" r="10" fill="currentColor" opacity="0.45" />
+      <path d="M41 72 L28 88 M59 72 L72 88" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
     </svg>
-    <span>Speeder</span>
+    <h3>Speeder</h3>
+    <div class="role">ROL: ASALTO VECTORIAL</div>
+    <div class="desc">ACELERA BRUSCO, CASTIGA LATERALES Y MANTIENE LA CADENCIA EN MOVIMIENTO. MENOS ARMADURA, MAS RITMO.</div>
+    <div class="stats">
+      <div class="stat"><span>ARMOR</span><div class="bar"><span style="width: 34%"></span></div></div>
+      <div class="stat"><span>SPEED</span><div class="bar"><span style="width: 100%"></span></div></div>
+      <div class="stat"><span>FIRE</span><div class="bar"><span style="width: 76%"></span></div></div>
+    </div>
+    <div class="perk">BONO: TIENE MEJOR EMPUJE LATERAL Y UNA VENTANA DE DASHEO MAS AGRESIVA.</div>
   </div>
 </div>
+
+<p class="hint">CLICK PARA DESPLEGAR NAVE · EL ASTILLERO SIGUE ACTIVO DENTRO DE LA PARTIDA</p>
 
 <script>
 document.querySelectorAll('.shape').forEach(el => {
